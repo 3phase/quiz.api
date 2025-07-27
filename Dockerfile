@@ -15,7 +15,7 @@ COPY ./Pipfile /usr/src/Pipfile
 COPY ./Pipfile.lock /usr/src/Pipfile.lock
 
 # install Python dependencies
-RUN pipenv install --system --deploy --ignore-pipfile \
+RUN pipenv install --system --deploy \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
 
