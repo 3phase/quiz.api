@@ -1,0 +1,311 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "josh",
+      "email": "josh@bratme.com",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "password": "pbkdf2_sha256$260000$example$hashplaceholder"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "kancho",
+      "email": "kancho@putkoderov.com",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "password": "pbkdf2_sha256$260000$example$hashplaceholder"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "stoqn",
+      "email": "stoqn@murdohai.bg",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "password": "pbkdf2_sha256$260000$example$hashplaceholder"
+    }
+  },
+  {
+    "model": "quiz.quiz",
+    "pk": 1,
+    "fields": {
+      "title": "General Knowledge",
+      "created_by": 1
+    }
+  },
+  {
+    "model": "quiz.quiz",
+    "pk": 2,
+    "fields": {
+      "title": "Math Fundamentals",
+      "created_by": 2
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1,
+    "fields": {
+      "quiz": 1,
+      "text": "What is the capital of Italy?"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 2,
+    "fields": {
+      "quiz": 1,
+      "text": "Who painted the Mona Lisa?"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 3,
+    "fields": {
+      "quiz": 2,
+      "text": "What is 5 + 7?"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 4,
+    "fields": {
+      "quiz": 2,
+      "text": "What is the derivative of x²?"
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 1,
+    "fields": {
+      "question": 1,
+      "text": "Rome",
+      "correct": true
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 2,
+    "fields": {
+      "question": 1,
+      "text": "Paris",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 3,
+    "fields": {
+      "question": 1,
+      "text": "Madrid",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 4,
+    "fields": {
+      "question": 1,
+      "text": "Berlin",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 5,
+    "fields": {
+      "question": 2,
+      "text": "Leonardo da Vinci",
+      "correct": true
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 6,
+    "fields": {
+      "question": 2,
+      "text": "Vincent van Gogh",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 7,
+    "fields": {
+      "question": 2,
+      "text": "Pablo Picasso",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 8,
+    "fields": {
+      "question": 2,
+      "text": "Michelangelo",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 9,
+    "fields": {
+      "question": 3,
+      "text": "12",
+      "correct": true
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 10,
+    "fields": {
+      "question": 3,
+      "text": "10",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 11,
+    "fields": {
+      "question": 3,
+      "text": "11",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 12,
+    "fields": {
+      "question": 3,
+      "text": "13",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 13,
+    "fields": {
+      "question": 4,
+      "text": "2x",
+      "correct": true
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 14,
+    "fields": {
+      "question": 4,
+      "text": "x",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 15,
+    "fields": {
+      "question": 4,
+      "text": "1",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.QuestionOption",
+    "pk": 16,
+    "fields": {
+      "question": 4,
+      "text": "3x",
+      "correct": false
+    }
+  },
+  {
+    "model": "quiz.invitation",
+    "pk": 1,
+    "fields": {
+      "quiz": 1,
+      "from_user": 2,
+      "to_user": 1
+    }
+  },
+  {
+    "model": "quiz.invitation",
+    "pk": 2,
+    "fields": {
+      "quiz": 1,
+      "from_user": 3,
+      "to_user": 2
+    }
+  },
+  {
+    "model": "quiz.invitation",
+    "pk": 3,
+    "fields": {
+      "quiz": 2,
+      "from_user": 1,
+      "to_user": 2
+    }
+  },
+  {
+    "model": "quiz.invitation",
+    "pk": 4,
+    "fields": {
+      "quiz": 2,
+      "from_user": 3,
+      "to_user": 2
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 1,
+    "fields": {
+      "question": 1,
+      "question_options": [
+        1,
+        2
+      ],
+      "user": 1
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 2,
+    "fields": {
+      "question": 2,
+      "question_options": [
+        6
+      ],
+      "user": 2
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 3,
+    "fields": {
+      "question": 3,
+      "question_options": [
+        9
+      ],
+      "user": 1
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 4,
+    "fields": {
+      "question": 4,
+      "question_options": [
+        13
+      ],
+      "user": 2
+    }
+  }
+]
