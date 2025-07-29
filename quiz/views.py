@@ -7,7 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Quiz, Score, Invitation, Question, Answer
-from .permissions import IsQuizCreatorManagerOrInvitee
+from .permissions import IsQuizCreatorManagerOrInvitee, \
+    UserHasPermissionsForAnswer, UserHasPermissionsForQuestion
 from .serializers import QuizSerializer, ScoreSerializer, InvitationSerializer, QuestionSerializer, AnswerSerializer
 
 User = get_user_model()
@@ -53,7 +54,7 @@ class InvitationViewSet(viewsets.ModelViewSet):
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    permission_classes = [IsAuthenticated, IsQuizCreatorManagerOrInvitee]
+    permission_classes = [IsAuthenticated, UserHasPermissionsForQuestion]
 
     def get_quiz(self):
         return get_object_or_404(Quiz, pk=self.kwargs['quiz_pk'])
@@ -66,7 +67,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
 class AnswerViewSet(viewsets.ModelViewSet):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
-    permission_classes = [IsAuthenticated, IsQuizCreatorManagerOrInvitee]
+    permission_classes = [IsAuthenticated, UserHasPermissionsForAnswer]
 
     def perform_create(self, serializer):
         ans = serializer.save(user=self.request.user)

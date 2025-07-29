@@ -45,7 +45,7 @@ class TestQuizViewSet:
         quiz2 = quiz_factory(managed_by=user, title='History')
         quiz_factory(created_by=user_factory(username='bob'))
 
-        url = reverse('quiz-list', kwargs={'user_pk': user.pk})
+        url = reverse('quiz-list')
         api_client.force_authenticate(user=user)
         resp = api_client.get(url)
 
@@ -60,7 +60,7 @@ class TestQuizViewSet:
         Score.objects.create(quiz=quiz, user=u2, points=5)
         Score.objects.create(quiz=quiz, user=user, points=3)
 
-        url = reverse('quiz-scores', kwargs={'user_pk': user.pk, 'pk': quiz.pk})
+        url = reverse('quiz-scores', kwargs={'pk': quiz.pk})
         api_client.force_authenticate(user=user)
         resp = api_client.get(url)
 
@@ -77,14 +77,14 @@ class TestInvitationViewSet:
         quiz = Quiz.objects.create(created_by=to_user, title='Math')
         invitation = Invitation.objects.create(from_user=from_user, to_user=to_user, quiz=quiz)
 
-        url = reverse('inv-list', kwargs={'user_pk': to_user.pk})
+        url = reverse('inv-list')
         api_client.force_authenticate(user=to_user)
         resp = api_client.get(url)
 
         assert resp.status_code == status.HTTP_200_OK
         assert len(resp.json()) == 1
 
-        url = reverse('invitation-accept', kwargs={'user_pk': to_user.pk, 'pk': invitation.pk})
+        url = reverse('invitation-accept', kwargs={'pk': invitation.pk})
         resp = api_client.patch(url)
 
         assert resp.status_code == status.HTTP_200_OK
@@ -98,13 +98,13 @@ class TestQuestionViewSet:
         quiz = quiz_factory(created_by=user, title='Science')
         api_client.force_authenticate(user=user)
 
-        url_list = reverse('question-list', kwargs={'user_pk': user.pk, 'quiz_pk': quiz.pk})
+        url_list = reverse('question-list', kwargs={'quiz_pk': quiz.pk})
         data = {'text': 'What is 2+2?'}
         resp = api_client.post(url_list, data, format='json')
         assert resp.status_code == status.HTTP_201_CREATED
         qid = resp.json()['id']
 
-        url_detail = reverse('question-detail', kwargs={'user_pk': user.pk, 'quiz_pk': quiz.pk, 'pk': qid})
+        url_detail = reverse('question-detail', kwargs={'quiz_pk': quiz.pk, 'pk': qid})
         resp = api_client.get(url_detail)
         assert resp.status_code == status.HTTP_200_OK
         assert resp.json()['text'] == data['text']
@@ -127,7 +127,7 @@ class TestAnswerViewSet:
         opt2 = QuestionOption.objects.create(question=question, text='no', correct=False)
 
         api_client.force_authenticate(user=user)
-        url = reverse('answer-list', kwargs={'user_pk': user.pk})
+        url = reverse('answer-list')
         resp = api_client.post(url, {'question': question.pk, 'question_options': [opt1.pk, opt2.pk]}, format='json')
         assert resp.status_code == status.HTTP_201_CREATED
 
@@ -143,7 +143,7 @@ class TestScoreViewSet:
         Score.objects.create(quiz=quiz, user=user, points=10)
 
         api_client.force_authenticate(user=user)
-        url = reverse('score-detail', kwargs={'user_pk': user.pk})
+        url = reverse('score-detail')
         resp = api_client.get(url)
         assert resp.status_code == status.HTTP_200_OK
         assert resp.json()[0]['points'] == 10
@@ -159,7 +159,7 @@ class TestProgressViewSet:
         Answer.objects.create(user=user, question=q1)
 
         api_client.force_authenticate(user=user)
-        url = reverse('quiz-progress', kwargs={'user_pk': user.pk, 'quiz_pk': quiz.pk})
+        url = reverse('quiz-progress', kwargs={'quiz_pk': quiz.pk})
         resp = api_client.get(url)
         assert resp.status_code == status.HTTP_200_OK
         assert resp.json()['completion'] == pytest.approx(50.0)
