@@ -80,7 +80,7 @@
     "pk": 4,
     "fields": {
       "quiz": 2,
-      "text": "What is the derivative of x²?"
+      "text": "What is the derivative of x**x?"
     }
   },
   {
