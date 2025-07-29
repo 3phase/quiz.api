@@ -71,11 +71,11 @@ class TestQuizViewSet:
 
 @pytest.mark.django_db
 class TestInvitationViewSet:
-    def test_list_invitations(self, api_client, user_factory):
+    def test_list_and_accept_invitations(self, api_client, user_factory):
         to_user = user_factory(username='alice')
         from_user = user_factory(username='bob')
         quiz = Quiz.objects.create(created_by=to_user, title='Math')
-        Invitation.objects.create(from_user=from_user, to_user=to_user, quiz=quiz)
+        invitation = Invitation.objects.create(from_user=from_user, to_user=to_user, quiz=quiz)
 
         url = reverse('inv-list', kwargs={'user_pk': to_user.pk})
         api_client.force_authenticate(user=to_user)
@@ -83,6 +83,12 @@ class TestInvitationViewSet:
 
         assert resp.status_code == status.HTTP_200_OK
         assert len(resp.json()) == 1
+
+        url = reverse('invitation-accept', kwargs={'user_pk': to_user.pk, 'pk': invitation.pk})
+        resp = api_client.patch(url)
+
+        assert resp.status_code == status.HTTP_200_OK
+        assert Invitation.objects.get(pk=invitation.pk).accepted == True
 
 
 @pytest.mark.django_db

@@ -43,6 +43,16 @@ class InvitationViewSet(viewsets.ModelViewSet):
         # invitations sent to me
         return Invitation.objects.filter(to_user=self.get_user())
 
+    def get_invitation(self, invitation_pk, user_pk):
+        return get_object_or_404(Invitation, pk=invitation_pk, to_user=user_pk)
+
+    @action(detail=True, methods=['patch'])
+    def accept(self, request, user_pk=None, pk=None):
+        invitation = self.get_invitation(pk, user_pk)
+        invitation.accepted = True
+        invitation.save()
+        return Response({'accepted': True})
+
 
 # these are the questions to a given quiz
 class QuestionViewSet(viewsets.ModelViewSet):

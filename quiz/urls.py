@@ -26,6 +26,8 @@ inv_detail = InvitationViewSet.as_view({
     'delete': 'destroy'
 })
 
+inv_accept = InvitationViewSet.as_view({'patch': 'accept'})
+
 q_list = QuestionViewSet.as_view({
     'get': 'list',
     'post': 'create'
@@ -60,6 +62,7 @@ urlpatterns = [
     path('users/<int:user_pk>/quizzes/<int:pk>/scores/', quiz_scores, name='quiz-scores'),
     path('users/<int:user_pk>/invitations/', inv_list, name='inv-list'),
     path('users/<int:user_pk>/invitations/<int:pk>/', inv_detail, name='inv-detail'),
+    path('users/<int:user_pk>/invitations/<int:pk>/accept', inv_accept, name='invitation-accept'),
     path('users/<int:user_pk>/quizzes/<int:quiz_pk>/questions/', q_list, name='question-list'),
     path('users/<int:user_pk>/quizzes/<int:quiz_pk>/questions/<int:pk>/', q_detail, name='question-detail'),
     path('users/<int:user_pk>/answers/', ans_list, name='answer-list'),
