@@ -62,4 +62,5 @@ urlpatterns = [
     path('quizzes/<int:quiz_pk>/questions/<int:pk>/', q_detail, name='question-detail'),
     path('quizzes/<int:quiz_pk>/progress/', ProgressViewSet.as_view(), name='quiz-progress'),
     path('scores/', score_detail, name='score-detail'),
+    path('answer-list/', ans_list, name='answer-list'),
 ]

@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [ ci, implementation ]
+  pull_request:
+    branches: [ ci, implementation ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build services
+        run: docker compose build
+
+      - name: Run tests
+        run: docker compose run --rm django-backend pytest --maxfail=1 --disable-warnings
