@@ -1,7 +1,6 @@
-# Engineering Assessment
+[![CI](https://github.com/3phase/quiz.api/actions/workflows/ci.yml/badge.svg?branch=implementation)](https://github.com/3phase/quiz.api/actions/workflows/ci.yml)
 
-Starter project to use for the engineering assessment exercise
-
+# QAAS
 ## Requirements
 - Docker
 - docker compose
