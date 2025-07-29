@@ -44,9 +44,17 @@ class InvitationViewSet(viewsets.ModelViewSet):
         return Invitation.objects.filter(to_user=self.get_user())
 
 
+# these are the questions to a given quiz
 class QuestionViewSet(viewsets.ModelViewSet):
-    queryset = Question.objects.select_related('quiz').prefetch_related('options')
+    queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+
+    def get_quiz(self):
+        return get_object_or_404(Quiz, pk=self.kwargs['quiz_pk'])
+
+    def perform_create(self, serializer):
+        quiz = self.get_quiz()
+        serializer.save(quiz=quiz)
 
 
 class AnswerViewSet(viewsets.ModelViewSet):
