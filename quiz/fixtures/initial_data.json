@@ -1,7 +1,7 @@
 [
   {
     "model": "auth.user",
-    "pk": 1,
+    "pk": 2,
     "fields": {
       "username": "josh",
       "email": "josh@bratme.com",
@@ -13,7 +13,7 @@
   },
   {
     "model": "auth.user",
-    "pk": 2,
+    "pk": 3,
     "fields": {
       "username": "kancho",
       "email": "kancho@putkoderov.com",
@@ -25,7 +25,7 @@
   },
   {
     "model": "auth.user",
-    "pk": 3,
+    "pk": 4,
     "fields": {
       "username": "stoqn",
       "email": "stoqn@murdohai.bg",
