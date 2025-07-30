@@ -28,7 +28,7 @@ docker exec <container-name> python manage.py loaddata initial_data
 * Note 2 - the fixtures respect the superuser, but don't run if you have some data you don't wanna lose.
 
 ### Test queries
-You could find some test queries, that could be used to test the application workflow [here](https://api.postman.com/collections/4513492-07f884aa-a252-4705-95bf-bae34f473b72?access_key=PMAT-01K1B0H1DMDW8XYF5SDXYNPHP9).
+You could find some test queries, that could be used to test the application workflow [here]().
 
 ### Admin panel
 You could use the admin panel with the well-known superuser credentials.
